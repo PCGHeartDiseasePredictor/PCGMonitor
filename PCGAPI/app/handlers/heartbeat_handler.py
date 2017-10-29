@@ -10,7 +10,7 @@ class HeartbeatHandler:
 
 	def heartbeat_analysis(self,heartbeat_data):
 		eng = matlab.engine.start_matlab()
-		var = eng.ssa10('a0006.wav')
+		var = eng.ssa10(heartbeat_data['filename'])
 		x = []
 		for item in var:
 			x.append(item)
@@ -48,7 +48,7 @@ class HeartbeatHandler:
 		inputTest  = inputTest.drop('posArea',1)
 		inputTest  = inputTest.drop('negArea',1)
 
-		filename = 'finalized_model.sav'
+		filename = '/home/risav/finalized_model.sav'
 		loaded_model = pickle.load(open(filename, 'rb'))
 		predicted = loaded_model.predict(inputTest)
-		print predicted
+		return predicted[0]
