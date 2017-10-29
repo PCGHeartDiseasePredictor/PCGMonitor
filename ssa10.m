@@ -65,5 +65,7 @@ I=[2];
    vr=(sum(d(I))/sev)*100;
    subplot(2,1,2);plot(y,'r');xlabel('Data point');ylabel('Reconstructed');grid on
 
+   pause(30);
+
    a = r
 
