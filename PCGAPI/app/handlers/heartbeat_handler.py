@@ -9,8 +9,12 @@ import os
 class HeartbeatHandler:
 
 	def heartbeat_analysis(self,heartbeat_data):
+		file_data = heartbeat_data.read()
+		f = open('/home/risav/PCG/pcg.wav', 'wb')
+		f.write(file_data)
+		f.close()
 		eng = matlab.engine.start_matlab()
-		var = eng.ssa10(heartbeat_data['filename'])
+		var = eng.ssa10('pcg.wav')
 		x = []
 		for item in var:
 			x.append(item)

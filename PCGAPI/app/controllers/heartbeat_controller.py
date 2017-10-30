@@ -12,7 +12,11 @@ def home():
 @app.route("/heartbeat", methods= ["POST"])
 def heartbeat():
 	heartbeat_handler = HeartbeatHandler()
-	heartbeat_data = json.loads(request.data)
-	response = heartbeat_handler.heartbeat_analysis(heartbeat_data)
+	if 'heartbeat' not in request.files:
+		print "sorry"
+		return '{}'
+
+	file = request.files.get('heartbeat')
+	response = heartbeat_handler.heartbeat_analysis(file)
 	return json.dumps({"success": True, "results": response})
 
